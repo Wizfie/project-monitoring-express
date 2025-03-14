@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types"], // Pastikan TypeScript tahu dimana mencari tipe custom
+    "target": "ES2017", // Menggunakan ES2017 untuk fitur async/await dan lainnya
+    "module": "commonjs",
+    "moduleResolution": "node", // Modul resolution untuk Node.js
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "strict": true, // Menyaring kode lebih ketat
+    "declaration": true, // Untuk menghasilkan file .d.ts
+    "declarationMap": true, // Untuk membuat peta deklarasi
+    "resolveJsonModule": true, // Mengizinkan impor file JSON
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["*"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id            Int     @id @default(autoincrement())
+  name          String
+  status        String
+  startDate     DateTime
+  endDate       DateTime
+  created_by    Int
+  task          Task[]
+}
+
+model Task {
+  id          Int  @id @default(autoincrement())
+  projectId   Int
+  taskName    String
+  pic         Int
+  project     Project @relation(fields:[projectId] , references:[id])
+  timelines   Timeline[]
+}
+
+model Timeline {
+  id                Int @id @default(autoincrement())
+  taskId            Int
+  timelineMonth     Int 
+  timelineYearStart Int 
+  timelineYearEnd   Int 
+  realisasiStart    DateTime?
+  realisasiEnd      DateTime?
+  value             Int?
+  description       String
+  lastUpdated       DateTime @updatedAt
+  task              Task     @relation(fields:[taskId], references: [id])
+}
+
+
+
+model User {
+  id Int @id @default(autoincrement())
+  username String
+  password String
+  department String 
+  active Boolean
+  created_at DateTime @default(now())
+  role Role @default(USER)
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPER
+}
