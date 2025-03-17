@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "@prisma/client";
 const JWT_SECRET = process.env.JWT_SECRET || "secret_key";
 const blacklist = new Map<string, number>();
+import { User } from "@prisma/client";
 
 declare global {
   namespace Express {
@@ -11,6 +11,7 @@ declare global {
     }
   }
 }
+
 // Middleware untuk autentikasi JWT
 export const authenticateJWT = (
   req: Request,

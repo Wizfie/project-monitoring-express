@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types"], // Pastikan TypeScript tahu dimana mencari tipe custom
+    "typeRoots": ["./node_modules/@types", "./src/types"], // Pastikan TypeScript tahu dimana mencari tipe custom
     "target": "ES2017", // Menggunakan ES2017 untuk fitur async/await dan lainnya
     "module": "commonjs",
     "moduleResolution": "node", // Modul resolution untuk Node.js
@@ -24,6 +24,6 @@
       "@src/*": ["*"]
     }
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

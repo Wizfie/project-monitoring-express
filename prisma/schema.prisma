@@ -17,9 +17,11 @@ model Project {
   id            Int     @id @default(autoincrement())
   name          String
   status        String
+  department    String
   startDate     DateTime
   endDate       DateTime
-  created_by    Int
+  createdBy     Int 
+  isDeleted     Boolean @default(false)
   task          Task[]
 }
 
@@ -28,6 +30,7 @@ model Task {
   projectId   Int
   taskName    String
   pic         Int
+  isDeleted     Boolean @default(false)
   project     Project @relation(fields:[projectId] , references:[id])
   timelines   Timeline[]
 }
@@ -43,6 +46,7 @@ model Timeline {
   value             Int?
   description       String
   lastUpdated       DateTime @updatedAt
+  isDeleted         Boolean @default(false)
   task              Task     @relation(fields:[taskId], references: [id])
 }
 
@@ -54,7 +58,7 @@ model User {
   password String
   department String 
   active Boolean
-  created_at DateTime @default(now())
+  createdAt DateTime @default(now())
   role Role @default(USER)
 }
 
